@@ -12,7 +12,13 @@ export class ArticleService {
 
   public allArticles:Array<Article> = []
 
-  public currentArticle:Article = {} as Article
+  public currentArticle:Article = {
+    category:0,
+    content:"",
+    id:0,
+    tags:[],
+    title:''
+  }
 
   /**
    * 
@@ -42,6 +48,16 @@ export class ArticleService {
     )
   }
 
+  resetArticle() {
+    console.log('reset happend')
+    this.currentArticle = {
+      category:0,
+      content:"",
+      id:0,
+      tags:[],
+      title:''
+    }
+  }
 
 }
 
@@ -50,8 +66,8 @@ export interface Article{
   id:number,
   title:string,
   content:string,
-  category:Category,
-  tags:Array<Tag>
+  category:number,
+  tags:Array<any>
 }
 
 interface Category {

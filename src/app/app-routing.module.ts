@@ -8,7 +8,7 @@ const routes: Routes = [
   {path:'',component:ArticlesListComponent},
   {path:'article/:id', component: ArticleComponent},
   {path:'update/:id', component: CreateArticleComponent},
-  
+  {path:'newarticle', component: CreateArticleComponent}
 ];
 
 @NgModule({

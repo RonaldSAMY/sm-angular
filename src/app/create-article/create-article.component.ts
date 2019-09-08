@@ -10,8 +10,12 @@ import { TagService } from '../service/tag.service';
 })
 export class CreateArticleComponent implements OnInit {
 
+  public selectedTags:Array<any> = []
+
+  public selectedTag = 0
+
   constructor(private route:ActivatedRoute, public articleS:ArticleService, public tagS:TagService) { 
-    this.articleS.currentArticle = {} as Article
+    this.articleS.resetArticle()
     this.route.params.subscribe(
       param => {
         this.articleS.getCurrentArticle(param.id)
@@ -20,6 +24,12 @@ export class CreateArticleComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  tagSelected() {
+    this.selectedTags.push(this.selectedTag)
+    this.selectedTag = 0
   }
 
 }
