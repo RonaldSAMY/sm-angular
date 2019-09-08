@@ -1,0 +1,8 @@
+<div class="detail my-5 py-5">
+  <a class="btn btn-success" [routerLink]="['/','update',articleS.currentArticle.id]">Modifer article</a>
+  <h1 class="text-center">{{articleS.currentArticle.title}}</h1>
+  <p [innerHTML]="articleS.currentArticle.content"></p>
+  <div class="tags">
+      <span class="badge badge-dark" *ngFor="let tag of articleS.currentArticle.tags">{{tag}}</span>
+  </div>
+</div>
