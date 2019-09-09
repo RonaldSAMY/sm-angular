@@ -12,6 +12,7 @@ export class ArticleComponent implements OnInit {
   constructor(private route:ActivatedRoute, public articleS:ArticleService) { 
     this.route.params.subscribe(
       param => {
+        
         this.articleS.getCurrentArticle(param.id)
       }
     )

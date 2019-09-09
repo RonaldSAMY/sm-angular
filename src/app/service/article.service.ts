@@ -12,13 +12,7 @@ export class ArticleService {
 
   public allArticles:Array<Article> = []
 
-  public currentArticle:Article = {
-    category:0,
-    content:"",
-    id:0,
-    tags:[],
-    title:''
-  }
+  public currentArticle:Article = {} as Article
 
   /**
    * 
@@ -40,6 +34,18 @@ export class ArticleService {
    */
   public getCurrentArticle(id:number) {
     this.httpS.getArticleById(id).subscribe(
+      (res:any)=>{
+        let curArt = Object.assign({},res)
+        this.currentArticle = res
+        this.currentArticle.category = curArt.category.id
+      },(err)=>{
+
+      }
+    )
+  }
+
+  public createArticle(article) {
+    this.httpS.createArticle(article).subscribe(
       (res:Article)=>{
         this.currentArticle = res
       },(err)=>{
@@ -49,13 +55,13 @@ export class ArticleService {
   }
 
   resetArticle() {
-    console.log('reset happend')
     this.currentArticle = {
       category:0,
       content:"",
       id:0,
       tags:[],
-      title:''
+      title:'',
+      image:'test.jpg'
     }
   }
 
@@ -67,10 +73,6 @@ export interface Article{
   title:string,
   content:string,
   category:number,
+  image:string,
   tags:Array<any>
-}
-
-interface Category {
-  id:number,
-  name:string
 }

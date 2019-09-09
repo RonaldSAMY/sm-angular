@@ -3,6 +3,6 @@
   <h1 class="text-center">{{articleS.currentArticle.title}}</h1>
   <p [innerHTML]="articleS.currentArticle.content"></p>
   <div class="tags">
-      <span class="badge badge-dark" *ngFor="let tag of articleS.currentArticle.tags">{{tag}}</span>
+      <span class="badge badge-dark" *ngFor="let tag of articleS.currentArticle.tags">{{tag.name}}</span>
   </div>
 </div>

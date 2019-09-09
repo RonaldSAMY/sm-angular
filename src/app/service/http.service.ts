@@ -25,11 +25,19 @@ export class HttpService {
     return this.httpC.get(environment.api+'/article/'+id)
   }
 
+  public createArticle(article) {
+    return this.httpC.post(environment.api+'/article/create',article)
+  }
+
   /**
    * To get all tags
    */
   public getTags() {
     return this.httpC.get(environment.api+'/tags')
+  }
+
+  public getAllCategorys() {
+    return this.httpC.get(environment.api+'/category')
   }
 
   

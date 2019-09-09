@@ -9,13 +9,21 @@
     <textarea class="form-control" required name="content" id="content" cols="30" rows="5"
       [(ngModel)]="articleS.currentArticle.content"></textarea>
   </div>
+  <div class="form-group">
+    <label for="content">Category</label>
+    <div class="form-group">
+      <select name="tags" class="form-control" [(ngModel)]="articleS.currentArticle.category">
+        <option *ngFor="let cat of categoryS.allCategorys" value="{{cat.id}}" [selected]="articleS.currentArticle.category == cat.id">{{cat.name}}</option>
+      </select>
+    </div>
+  </div>
   <div class="row">
     
     <div class="row col-6">
         <label>Tags</label>
       <div class="form-group col-6">
         <select name="tags" class="form-control" [(ngModel)]="selectedTag">
-          <option *ngFor="let tag of tagS.allTags" value="{{tag.id}}">{{tag.name}}</option>
+          <option *ngFor="let tag,let idx = index of tagS.allTags" value="{{idx}}">{{tag.name}}</option>
         </select>
       </div>
       <div class="col-4">
@@ -24,9 +32,10 @@
     </div>
     <div class="col-6">
       <ul>
-        <li *ngFor="let t of selectedTags">{{t}}</li>
+        <li *ngFor="let t of articleS.currentArticle.tags">{{t.name}}</li>
       </ul>
     </div>
   </div>
-  <button type="submit" class="btn btn-success">Submit</button>
+  <button type="submit" class="btn btn-success" (click)="createArticle()" *ngIf="!update">Submit</button>
+  <button type="submit" class="btn btn-success" (click)="updateArticle()" *ngIf="update">Update</button>
 </form>
